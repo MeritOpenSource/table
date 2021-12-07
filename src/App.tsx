@@ -1,23 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Table } from './Table/Table';
+
+type Person = {
+  readonly name: string;
+  readonly age: number;
+}
 
 function App() {
+  const people: readonly Person[] = [
+    { name: "Stephen", age: 41 },
+    { name: "Julia", age: 12 },
+    { name: "Potato", age: 9 },
+  ];
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Table data={people} />
       </header>
     </div>
   );
