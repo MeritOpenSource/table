@@ -150,7 +150,7 @@ const config = {
     "operator-assignment": "error",
     "prefer-object-spread": "error",
     "spaced-comment": "error",
-    "arrow-parens": ["warn", "as-needed"],
+    "arrow-parens": ["off", "as-needed"],
     "no-this-before-super": "error",
     "no-useless-computed-key": "error",
     "no-useless-constructor": "off", // Handled by @typescript-eslint/no-useless-constructor
