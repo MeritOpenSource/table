@@ -1,18 +1,16 @@
-import { useState } from "react";
 import "./Table.css";
+import React, { useState } from "react";
 
-type Props = {
-  data: readonly any[]
-};
+interface Props {
+  data: readonly any[];
+}
 
 export function Table({ data }: Props) {
   const [sortedData, setSortedData] = useState(data);
   const headers = Object.keys(data[0]);
 
   function sort(sortBy: string) {
-    const sorted = [...data].sort((a: any, b: any) => {
-      return a[sortBy].toString().localeCompare(b[sortBy].toString());
-    });
+    const sorted = [...data].sort((a: any, b: any) => a[sortBy].toString().localeCompare(b[sortBy].toString()));
 
     setSortedData(sorted);
   }
@@ -21,8 +19,16 @@ export function Table({ data }: Props) {
     <table data-testid="table">
       <tbody data-testid="tbody">
         <tr>
-          {headers.map(header => (
-            <td className="heading" key={header} onClick={() => sort(header)}>{header}</td>
+          {headers.map((header) => (
+            <td
+              className="heading"
+              key={header}
+              onClick={() => {
+                sort(header);
+              }}
+            >
+              {header}
+            </td>
           ))}
         </tr>
 
@@ -35,5 +41,5 @@ export function Table({ data }: Props) {
         ))}
       </tbody>
     </table>
-  )
+  );
 }

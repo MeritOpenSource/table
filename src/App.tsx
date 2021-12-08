@@ -1,16 +1,17 @@
-import './App.css';
-import { Table } from './Table/Table';
+import "./App.css";
+import { Table } from "./Table/Table";
+import React from "react";
 
-type Person = {
+interface Person {
   readonly name: string;
   readonly age: number;
 }
 
 function App() {
   const people: readonly Person[] = [
-    { name: "Stephen", age: 41 },
-    { name: "Julia", age: 12 },
-    { name: "Potato", age: 9 },
+    { age: 41, name: "Stephen" },
+    { age: 12, name: "Julia" },
+    { age: 9, name: "Potato" },
   ];
 
   return (
