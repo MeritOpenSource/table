@@ -1,14 +1,14 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Table } from './Table';
+import { Table } from "./Table";
+import { render } from "@testing-library/react";
+import React from "react";
 
 const people = [
-  { name: "Stephen", age: 41 },
-  { name: "Julia", age: 12 },
-  { name: "Potato", age: 9 },
+  { age: 41, name: "Stephen" },
+  { age: 12, name: "Julia" },
+  { age: 9, name: "Potato" },
 ];
 
-test('renders an accessible thead', () => {
+test("renders an accessible thead", () => {
   const table = render(<Table data={people} />).getByTestId("table");
   const tableRows = table.querySelectorAll("tr");
 
@@ -16,7 +16,7 @@ test('renders an accessible thead', () => {
   expect(tableRows[0].parentElement?.nodeName).toBe("THEAD");
 });
 
-test('renders the correct number of rows inside tbody', () => {
+test("renders the correct number of rows inside tbody", () => {
   const tbody = render(<Table data={people} />).getByTestId("tbody");
   const tableRows = tbody.querySelectorAll("tr");
 
@@ -24,7 +24,7 @@ test('renders the correct number of rows inside tbody', () => {
   expect(tableRows.length).toEqual(people.length);
 });
 
-test('sorts by name correctly', () => {
+test("sorts by name correctly", () => {
   const tbody = render(<Table data={people} />).getByTestId("tbody");
   const tableRows = tbody.querySelectorAll("tr");
 
@@ -35,7 +35,7 @@ test('sorts by name correctly', () => {
   });
 });
 
-test('sorts by age correctly', () => {
+test("sorts by age correctly", () => {
   const tbody = render(<Table data={people} />).getByTestId("tbody");
   const tableRows = tbody.querySelectorAll("tr");
 
