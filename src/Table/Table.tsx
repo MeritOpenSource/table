@@ -22,6 +22,7 @@ export function Table({ data }: Props) {
           {headers.map((header) => (
             <td
               className="heading"
+              data-testid={`heading-${header}`}
               key={header}
               onClick={() => {
                 sort(header);
