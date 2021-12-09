@@ -8,6 +8,11 @@ const people = [
   { age: 9, name: "Potato" },
 ];
 
+test("renders with empty data", () => {
+  const table = render(<Table data={[]} />).getByTestId("table");
+  expect(table);
+});
+
 test("renders an accessible thead", () => {
   const table = render(<Table data={people} />).getByTestId("table");
   const tableRows = table.querySelectorAll("tr");
