@@ -226,7 +226,7 @@ const config = {
     "@typescript-eslint/typedef": "off",
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "off", // After discussion with team, we're not happy with the safety of this rule, so it's off
-    "@typescript-eslint/prefer-readonly-parameter-types": ["error", { ignoreInferredTypes: true }],
+    "@typescript-eslint/prefer-readonly-parameter-types": ["off"],
 
     // To turn on with some discussion and effort
     "@typescript-eslint/no-empty-function": "off",
