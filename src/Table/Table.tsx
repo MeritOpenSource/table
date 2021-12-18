@@ -2,7 +2,7 @@ import "./Table.css";
 import React, { useState } from "react";
 
 type Props = {
-  data: readonly any[];
+  data: any[];
 };
 
 export function Table({ data }: Props) {
