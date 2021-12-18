@@ -2,10 +2,10 @@ import "./App.css";
 import { Table } from "./Table/Table";
 import React from "react";
 
-interface Person {
+type Person = {
   readonly name: string;
   readonly age: number;
-}
+};
 
 function App() {
   const people: readonly Person[] = [

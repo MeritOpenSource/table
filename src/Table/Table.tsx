@@ -1,9 +1,9 @@
 import "./Table.css";
 import React, { useState } from "react";
 
-interface Props {
+type Props = {
   data: readonly any[];
-}
+};
 
 export function Table({ data }: Props) {
   const [sortedData, setSortedData] = useState(data);
