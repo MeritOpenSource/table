@@ -8,31 +8,9 @@ const people = [
   { age: 9, name: "Potato" },
 ];
 
-test("renders with empty data", () => {
-  const table = render(<Table data={[]} />).getByTestId("table");
-  expect(table);
-});
-
-test("renders an accessible thead", () => {
-  const table = render(<Table data={people} />).getByTestId("table");
-  const tableRows = table.querySelectorAll("tr");
-
-  // Must be inside a <thead>
-  expect(tableRows[0].parentElement?.nodeName).toBe("THEAD");
-});
-
-test("renders the correct number of rows inside tbody", () => {
-  const tbody = render(<Table data={people} />).getByTestId("tbody");
-  const tableRows = tbody.querySelectorAll("tr");
-
-  // Must match the length of data sent in
-  expect(tableRows.length).toEqual(people.length);
-});
-
 //
 // Sorting
 //
-
 test("sorts by { name, ascending } correctly", () => {
   const table = render(<Table data={people} />);
   const nameHeader = table.getByTestId("heading-name");
@@ -105,4 +83,25 @@ test("sorts by { age, descending } correctly", () => {
   tableRows.forEach((row, index) => {
     expect(row.querySelectorAll("td")[ageIndex]).toHaveTextContent(correctSorting[index].age.toString());
   });
+});
+
+test("renders with empty data", () => {
+  const table = render(<Table data={[]} />).getByTestId("table");
+  expect(table);
+});
+
+test("renders an accessible thead", () => {
+  const table = render(<Table data={people} />).getByTestId("table");
+  const tableRows = table.querySelectorAll("tr");
+
+  // Must be inside a <thead>
+  expect(tableRows[0].parentElement?.nodeName).toBe("THEAD");
+});
+
+test("renders the correct number of rows inside tbody", () => {
+  const tbody = render(<Table data={people} />).getByTestId("tbody");
+  const tableRows = tbody.querySelectorAll("tr");
+
+  // Must match the length of data sent in
+  expect(tableRows.length).toEqual(people.length);
 });
