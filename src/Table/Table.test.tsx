@@ -1,5 +1,5 @@
 import { Table } from "./Table";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import React from "react";
 
 const people = [
@@ -32,16 +32,20 @@ describe("table rendering", () => {
 });
 
 describe("table storting", () => {
-  test("sorts by { name, ascending } correctly", () => {
-    const table = render(<Table data={people} />);
-    const nameHeader = table.getByTestId("heading-name");
-    nameHeader.click();
-
+  test("sorts by { name, ascending } correctly", async () => {
     const correctSorting = [
       { age: 12, name: "Julia" },
       { age: 9, name: "Potato" },
       { age: 41, name: "Stephen" },
     ];
+
+    const table = render(<Table data={people} />);
+
+    const nameHeader = table.getByTestId("heading-name");
+    nameHeader.click();
+
+    // Make sure effects are run
+    await waitFor(() => table.getByTestId("tbody"));
 
     const tableRows = table.getByTestId("tbody").querySelectorAll("tr");
     const nameIndex = 1;
@@ -50,17 +54,20 @@ describe("table storting", () => {
     });
   });
 
-  test("sorts by { name, descending } correctly", () => {
-    const table = render(<Table data={people} />);
-    const nameHeader = table.getByTestId("heading-name");
-    nameHeader.click();
-    nameHeader.click();
-
+  test("sorts by { name, descending } correctly", async () => {
     const correctSorting = [
       { age: 41, name: "Stephen" },
       { age: 9, name: "Potato" },
       { age: 12, name: "Julia" },
     ];
+
+    const table = render(<Table data={people} />);
+    const nameHeader = table.getByTestId("heading-name");
+    nameHeader.click();
+    nameHeader.click();
+
+    // Make sure effects are run
+    await waitFor(() => table.getByTestId("tbody"));
 
     const tableRows = table.getByTestId("tbody").querySelectorAll("tr");
     const nameIndex = 1;
@@ -69,35 +76,43 @@ describe("table storting", () => {
     });
   });
 
-  test("sorts by { age, ascending } correctly", () => {
+  test("sorts by { age, ascending } correctly", async () => {
+    const correctSorting = [
+      { age: 9, name: "Potato" },
+      { age: 12, name: "Julia" },
+      { age: 41, name: "Stephen" },
+    ];
+
     const table = render(<Table data={people} />);
+
     const ageHeader = table.getByTestId("heading-age");
     ageHeader.click();
 
-    const correctSorting = [
-      { age: 9, name: "Potato" },
-      { age: 12, name: "Julia" },
-      { age: 41, name: "Stephen" },
-    ];
+    // Make sure effects are run
+    await waitFor(() => table.getByTestId("tbody"));
 
     const tableRows = table.getByTestId("tbody").querySelectorAll("tr");
     const ageIndex = 0;
+
     tableRows.forEach((row, index) => {
       expect(row.querySelectorAll("td")[ageIndex]).toHaveTextContent(correctSorting[index].age.toString());
     });
   });
 
-  test("sorts by { age, descending } correctly", () => {
-    const table = render(<Table data={people} />);
-    const ageHeader = table.getByTestId("heading-age");
-    ageHeader.click();
-    ageHeader.click();
-
+  test("sorts by { age, descending } correctly", async () => {
     const correctSorting = [
       { age: 41, name: "Stephen" },
       { age: 12, name: "Julia" },
       { age: 9, name: "Potato" },
     ];
+
+    const table = render(<Table data={people} />);
+    const ageHeader = table.getByTestId("heading-age");
+    ageHeader.click();
+    ageHeader.click();
+
+    // Make sure effects are run
+    await waitFor(() => table.getByTestId("tbody"));
 
     const tableRows = table.getByTestId("tbody").querySelectorAll("tr");
     const ageIndex = 0;
